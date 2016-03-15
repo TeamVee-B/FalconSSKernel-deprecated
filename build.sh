@@ -14,7 +14,7 @@
 
 maindevice() {
 clear
-echo "-${bldgrn}Device choice${txtrst}-"
+echo "-${bldgrn}Variant choice${txtrst}-"
 echo
 bname=$name
 bvariant=$variant
@@ -41,7 +41,7 @@ if [ "$variant" == "" ]; then
 	defconfig=$bdefconfig
 	unset bname bvariant bdefconfig
 else
-	defconfig="cyanogenmod_falconss_defconfig"
+	defconfig="stock_falconss_defconfig"
 	name="XperiaE1"
 	make $defconfig &> /dev/null | echo "$x - $name $variant, setting..."
 	unset buildprocesscheck zippackagecheck defconfigcheck
