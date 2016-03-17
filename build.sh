@@ -13,39 +13,11 @@
 # Main Process - Start
 
 maindevice() {
-clear
-echo "-${bldgrn}Variant choice${txtrst}-"
 echo
-_name=$name
-_variant=$variant
-_defconfig=$defconfig
-unset name variant defconfig
-echo "${bldred}Xperia E1${txtrst}"
-echo "0) Single | D2004/D2005 | 20.1.B.2.15"
-echo "1) Dual   | D2104/D2105 | 20.1.B.2.15"
-echo "2) TV     | D2114       | 20.1.B.0.65"
-echo
-echo "e) Exit"
-echo
-read -p "Choice: " -n 1 -s x
-case "$x" in
-	0 ) variant="Single";;
-	1 ) variant="Dual";;
-	2 ) variant="TV";;
-	e ) ;;
-	* ) ops;;
-esac
-if [ "$variant" == "" ]; then
-	name=$_name
-	variant=$_variant
-	defconfig=$_defconfig
-	unset _name _variant _defconfig
-else
-	defconfig="stock_falconss_defconfig"
-	name="XperiaE1"
-	make $defconfig &> /dev/null | echo "$x - $name $variant, setting..."
-	unset buildprocesscheck zippackagecheck defconfigcheck
-fi
+defconfig="stock_falconss_defconfig"
+name="XperiaE1"
+make $defconfig &> /dev/null | echo "$x - $name, setting..."
+unset buildprocesscheck zippackagecheck defconfigcheck
 }
 
 maintoolchain() {
@@ -168,7 +140,6 @@ if ! [ "$defconfig" == "" ]; then
 		mkdir $zipdirout/ramdisk/
 
 		cp -r zip-creator/ramdisk/base-ramdisk/* $zipdirout/ramdisk/
-		cp -r zip-creator/ramdisk/$variant-ramdisk/* $zipdirout/ramdisk/
 
 		cd $zipdirout/ramdisk/
 		find . | cpio -o -H newc | gzip > ../../$zipdirout/tempramdisk
@@ -194,7 +165,6 @@ if ! [ "$defconfig" == "" ]; then
 		rm -rf $zipdirout/tempramdisk
 
 		echo "${name}" >> $zipdirout/device.prop
-		echo "${variant}" >> $zipdirout/device.prop
 		echo "${Release}" >> $zipdirout/device.prop
 		echo "${revision}" >> $zipdirout/device.prop
 
@@ -295,7 +265,7 @@ echo "-${bldred}Clean${txtrst}-"
 echo "1) Zip Packages | ${bldred}$cleanzipcheck${txtrst}"
 echo "2) Kernel       | ${bldred}$cleankernelcheck${txtrst}"
 echo "-${bldgrn}Main Process${txtrst}-"
-echo "3) Device Choice    | ${bldgrn}$name $variant${txtrst}"
+echo "3) Device Choice    | ${bldgrn}$name${txtrst}"
 echo "4) Toolchain Choice | ${bldgrn}$ToolchainCompile${txtrst}"
 echo "-${bldyel}Build Process${txtrst}-"
 echo "5) Build Kernel      | ${bldyel}$buildprocesscheck${txtrst}"
@@ -319,7 +289,7 @@ echo
 read -n 1 -p "${txtbld}Choice: ${txtrst}" -s x
 case $x in
 	1) echo "$x - Cleaning Zips"; rm -rf zip-creator/*.zip; unset zippackagecheck;;
-	2) echo "$x - Cleaning Kernel"; make clean mrproper &> /dev/null; unset buildprocesscheck name variant defconfig BUILDTIME;;
+	2) echo "$x - Cleaning Kernel"; make clean mrproper &> /dev/null; unset buildprocesscheck name defconfig BUILDTIME;;
 	3) maindevice;;
 	4) maintoolchain;;
 	5) buildprocess;;
@@ -408,7 +378,7 @@ elif [ -e build.sh ]; then
 		kernelsublevel=`cat Makefile | grep SUBLEVEL | cut -c 12- | head -1`
 		kernelname=`cat Makefile | grep NAME | cut -c 8- | head -1`
 		release=$(date +%d""%m""%Y)
-		export zipfile="$customkernel-$name-$variant-$release-$build.zip"
+		export zipfile="$customkernel-$name-$release-$build.zip"
 
 		buildsh
 	done
