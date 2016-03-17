@@ -230,7 +230,7 @@ if [ -f .travis.yml ]; then
 	echo "Just to make upload and build trigger more easy"
 	echo
 fi
-echo "TAG to upload in 'origin': $customkernel-$build"
+echo "TAG to upload in 'origin': $build"
 echo
 echo "y) If you want to continue"
 echo
@@ -240,13 +240,15 @@ read -p "Choice: " -n 1 -s x
 case $x in
 	"y") echo
 	echo "Deleting local TAG, if have one"
-	git tag -d $customkernel-$build
+	git tag -d $build
 	echo "Deleting Remote TAG, if have one"
-	git config credential.helper 'cache --timeout=300'
-	git push --delete origin $customkernel-$build
+	if ! [ -f ~/.git-credentials ]
+		then git config credential.helper 'cache --timeout=300'
+	fi
+	git push --delete origin $build
 	echo
 	echo "Creating new local TAG"
-	git tag $customkernel-$build
+	git tag $build
 	echo "Pushing new local TAG to Remote"
 	git push origin --tags
 	sleep 3
