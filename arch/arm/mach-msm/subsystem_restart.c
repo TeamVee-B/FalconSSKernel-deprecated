@@ -729,10 +729,6 @@ static void subsystem_restart_wq_func(struct work_struct *work)
 			desc->name);
 	notify_each_subsys_device(list, count, SUBSYS_BEFORE_SHUTDOWN, NULL);
 	for_each_subsys_device(list, count, NULL, subsystem_shutdown);
-	{
-		extern void last_ssr_kmsg_write(void);
-		last_ssr_kmsg_write();
-	}
 	notify_each_subsys_device(list, count, SUBSYS_AFTER_SHUTDOWN, NULL);
 
 	notify_each_subsys_device(list, count, SUBSYS_RAMDUMP_NOTIFICATION,

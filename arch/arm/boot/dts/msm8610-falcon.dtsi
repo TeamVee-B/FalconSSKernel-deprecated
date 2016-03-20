@@ -465,11 +465,6 @@
 		qcom,memory-fixed = <0x08700000 0x40000>;
 	};
 
-	last_radio_log {
-		compatible = "qcom,last-radio-log";
-		qcom,memory-fixed = <0x08740000 0x40000>;
-	};
-
 	ramdumpinfo {
 		compatible = "qcom,ramdumpinfo";
 		qcom,memory-fixed = <0x08780000 0x200>;
