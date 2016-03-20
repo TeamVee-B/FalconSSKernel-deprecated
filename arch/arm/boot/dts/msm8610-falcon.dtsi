@@ -465,19 +465,9 @@
 		qcom,memory-fixed = <0x08700000 0x40000>;
 	};
 
-	ramdumpinfo {
-		compatible = "qcom,ramdumpinfo";
-		qcom,memory-fixed = <0x08780000 0x200>;
-	};
-
-	productinfo {
-		compatible = "qcom,productinfo";
-		qcom,memory-fixed = <0x08780200 0x200>;
-	};
-
 	restart_parameters {
 		compatible = "qcom,restart-parameters";
-		qcom,memory-fixed = <0x087C0000 0x40000>;
+		qcom,memory-fixed = <0x08740000 0x40000>;
 	};
 
 	qcom,wdt@f9017000 {
