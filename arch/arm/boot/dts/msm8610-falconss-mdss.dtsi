@@ -85,4 +85,4 @@
 	};
 };
 
-/include/ "msm8610-falcon-mdss-panels.dtsi"
+/include/ "msm8610-falconss-mdss-panels.dtsi"

@@ -36,13 +36,13 @@
 
 /include/ "msm8610-camera.dtsi"
 /include/ "msm-iommu-v0.dtsi"
-/include/ "msm8610-falcon-ion.dtsi"
+/include/ "msm8610-falconss-ion.dtsi"
 /include/ "msm8610-gpu.dtsi"
 /include/ "msm-gdsc.dtsi"
 /include/ "msm8610-coresight.dtsi"
 /include/ "msm8610-smp2p.dtsi"
 /include/ "msm8610-bus.dtsi"
-/include/ "msm8610-falcon-mdss.dtsi"
+/include/ "msm8610-falconss-mdss.dtsi"
 /include/ "msm-rdbg.dtsi"
 
 &soc {
@@ -1073,7 +1073,7 @@
 /include/ "msm8610-iommu-domains.dtsi"
 
 /include/ "msm-pm8110-rpm-regulator.dtsi"
-/include/ "msm-pm8110-falcon.dtsi"
+/include/ "msm-pm8110-falconss.dtsi"
 /include/ "msm8610-regulator.dtsi"
 
 &pm8110_vadc {

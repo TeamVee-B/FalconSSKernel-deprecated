@@ -10,17 +10,9 @@
  * GNU General Public License for more details.
  */
 
-/dts-v1/;
-
-/include/ "msm8610-falcon-v2.dtsi"
-/include/ "msm8610-falcon-mtp.dtsi"
-/include/ "dsi-v2-panel-hx8379a-wvga-video-falcon.dtsi"
-/include/ "msm8610-falcon-camera-sensor-cdp-mtp.dtsi"
-
-/ {
-	model = "Qualcomm MSM 8610v2 MTP";
-	compatible = "qcom,msm8610-mtp", "qcom,msm8610", "qcom,mtp";
-	qcom,board-id = <8 0>;
-};
-
-
+/include/ "dsi-panel-truly-wvga-video-falconss.dtsi"
+/include/ "dsi-panel-truly-wvga-cmd.dtsi"
+/include/ "dsi-panel-nt35590-720p-video.dtsi"
+/include/ "dsi-panel-otm8018b-fwvga-video-falconss.dtsi"
+/include/ "dsi-panel-hx8379a-wvga-video.dtsi"
+/include/ "dsi-panel-hx8389b-qhd-video.dtsi"
