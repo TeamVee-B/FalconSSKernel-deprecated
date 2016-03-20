@@ -373,7 +373,7 @@ elif [ -e build.sh ]; then
 			else cleankernelcheck="Already Done!"
 		fi
 		Release=0
-		revision=1
+		revision=2
 		build=R${Release}r${revision}
 		kernelversion=`cat Makefile | grep VERSION | cut -c 11- | head -1`
 		kernelpatchlevel=`cat Makefile | grep PATCHLEVEL | cut -c 14- | head -1`
