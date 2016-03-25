@@ -284,7 +284,7 @@ echo "8) Copy Latest Build Zip to device - Via Adb | ${bldblu}$zipcopycheck${txt
 echo "9) Reboot device to recovery"
 echo "t) Git Push TAG"
 echo "-${bldmag}Options${txtrst}-"
-echo "o) View Build Output | $buildoutput"
+echo "o) View Build Output | $buildoutput | z) Local testing | $localoutput"
 echo "g) Git Gui  |  k) GitK  |  s) Git Push  |  l) Git Pull"
 echo "q) Quit"
 echo
@@ -301,6 +301,7 @@ case $x in
 	9) echo "$x - Rebooting to Recovery..."; adb reboot recovery;;
 	t) tagupload;;
 	o) if [ "$buildoutput" == "OFF" ]; then unset buildoutput; else buildoutput="OFF"; fi;;
+	z) if [ "$localoutput" == "OFF" ]; then localoutput="${bldmag}ON${txtrst}"; else localoutput="OFF"; fi;;
 	q) echo "$x - Ok, Bye!"; break;;
 	g) echo "$x - Opening Git Gui"; git gui;;
 	k) echo "$x - Opening GitK"; gitk;;
@@ -375,6 +376,15 @@ elif [ -e build.sh ]; then
 		Release=0
 		revision=2
 		build=R${Release}r${revision}
+		if [ "$localoutput" == "" ]
+		then
+			localoutput="OFF"
+		fi
+		if ! [ "$localoutput" == "OFF" ]
+		then
+			build=$(cat .version)-$build
+			localoutput="${bldmag}ON${txtrst}"
+		fi
 		kernelversion=`cat Makefile | grep VERSION | cut -c 11- | head -1`
 		kernelpatchlevel=`cat Makefile | grep PATCHLEVEL | cut -c 14- | head -1`
 		kernelsublevel=`cat Makefile | grep SUBLEVEL | cut -c 12- | head -1`
