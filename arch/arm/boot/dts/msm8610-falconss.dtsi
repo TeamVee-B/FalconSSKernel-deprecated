@@ -192,7 +192,7 @@
 				qcom,vidc-partition-buffer-types = <0xfff>;
 			};
 		};
-};
+	};
 
 	qcom,usbbam@f9a44000 {
 		compatible = "qcom,usb-bam-msm";
@@ -457,17 +457,12 @@
 
 	qcom,msm-mem-hole {
 		compatible = "qcom,msm-mem-hole";
-		qcom,memblock-remove = <0x08700000 0x100000 0x08800000 0x2d00000 0x0c500000 0x1900000>; /* Address and Size of Hole */
+		qcom,memblock-remove = <0x08800000 0x2d00000 0x0c500000 0x1900000>; /* Address and Size of Hole */
 	};
 
 	ram_console {
 		compatible = "qcom,ram-console";
 		qcom,memory-fixed = <0x08700000 0x40000>;
-	};
-
-	restart_parameters {
-		compatible = "qcom,restart-parameters";
-		qcom,memory-fixed = <0x08740000 0x40000>;
 	};
 
 	qcom,wdt@f9017000 {
